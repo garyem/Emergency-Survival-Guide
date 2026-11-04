@@ -1,7 +1,7 @@
 {
   "name": "Emergency Survival Guide",
   "short_name": "Survival Guide",
-  "description": "What to do in a 7 day winter power cut at home.",
+  "description": "What to do in a winter power cut of more than 3 days at home.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

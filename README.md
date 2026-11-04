@@ -1,6 +1,6 @@
 # Emergency Survival Guide
 
-A mobile-friendly guide for getting through a 7 day winter power cut at home in the UK.
+A mobile-friendly guide for getting through a winter power cut of more than 3 days at home in the UK.
 
 - Single page, works on Android and any phone browser
 - Tap the section buttons at the top to jump around
