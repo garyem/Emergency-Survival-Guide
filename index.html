@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14213d">
+<meta name="description" content="Practical guide for surviving a 7 day winter power cut at home in the UK.">
+<title>Emergency Survival Guide</title>
+<link rel="manifest" href="manifest.json">
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --card: #ffffff;
+    --ink: #1b1b1b;
+    --muted: #555;
+    --navy: #14213d;
+    --red: #c1121f;
+    --amber: #fca311;
+    --green: #2d6a4f;
+    --line: #e2ded4;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: var(--navy); }
+
+  header.hero {
+    background: var(--navy);
+    color: #fff;
+    padding: 28px 20px 24px;
+  }
+  .hero h1 { margin: 0 0 6px; font-size: 1.9rem; line-height: 1.15; }
+  .hero p { margin: 0; opacity: .9; font-size: 1.05rem; }
+
+  nav.chips {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,.15);
+    display: flex; gap: 8px;
+    overflow-x: auto; padding: 10px 12px;
+    scrollbar-width: none;
+  }
+  nav.chips::-webkit-scrollbar { display: none; }
+  nav.chips a {
+    flex: 0 0 auto;
+    color: #fff; text-decoration: none;
+    background: rgba(255,255,255,.14);
+    padding: 10px 14px; border-radius: 999px;
+    font-size: .95rem; font-weight: 600;
+    min-height: 44px; display: flex; align-items: center;
+  }
+  nav.chips a:active { background: var(--amber); color: var(--navy); }
+
+  main { max-width: 720px; margin: 0 auto; padding: 16px 14px 60px; }
+
+  .numbers {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    margin: 4px 0 18px;
+  }
+  .numbers a {
+    display: block; text-align: center; text-decoration: none;
+    background: var(--card); border: 2px solid var(--line);
+    border-radius: var(--radius); padding: 12px 6px; color: var(--ink);
+  }
+  .numbers a strong { display: block; font-size: 1.6rem; color: var(--red); line-height: 1.1; }
+  .numbers a span { font-size: .85rem; color: var(--muted); }
+
+  .alert {
+    background: #fff1f1; border-left: 6px solid var(--red);
+    border-radius: 10px; padding: 14px 16px; margin: 0 0 18px;
+  }
+  .alert strong { color: var(--red); }
+
+  section.card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); margin: 0 0 14px; overflow: hidden;
+  }
+  details > summary {
+    list-style: none; cursor: pointer;
+    padding: 16px 18px; display: flex; align-items: center; gap: 12px;
+    font-size: 1.25rem; font-weight: 700; min-height: 60px;
+  }
+  details > summary::-webkit-details-marker { display: none; }
+  summary .icon {
+    flex: 0 0 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; background: #eef1f7;
+  }
+  summary .tag {
+    margin-left: auto; font-size: .75rem; font-weight: 700;
+    padding: 4px 8px; border-radius: 6px; white-space: nowrap;
+  }
+  .tag.top { background: var(--red); color: #fff; }
+  summary::after {
+    content: "+"; font-size: 1.6rem; font-weight: 400; color: var(--muted);
+    margin-left: 8px;
+  }
+  details[open] > summary::after { content: "\2212"; }
+  .body { padding: 0 18px 18px; }
+  .body h3 { font-size: 1.05rem; margin: 18px 0 6px; color: var(--navy); }
+  .body ul { padding-left: 22px; margin: 6px 0; }
+  .body li { margin: 6px 0; }
+  .why { color: var(--muted); font-size: .95rem; }
+
+  .warn {
+    background: #fff7e6; border-left: 5px solid var(--amber);
+    border-radius: 8px; padding: 10px 14px; margin: 12px 0;
+  }
+  .danger {
+    background: #fff1f1; border-left: 5px solid var(--red);
+    border-radius: 8px; padding: 10px 14px; margin: 12px 0;
+  }
+  .tip {
+    background: #edf6f0; border-left: 5px solid var(--green);
+    border-radius: 8px; padding: 10px 14px; margin: 12px 0;
+  }
+
+  .checklist { list-style: none; padding: 0 !important; }
+  .checklist li { margin: 0; border-bottom: 1px solid var(--line); }
+  .checklist li:last-child { border-bottom: 0; }
+  .checklist label {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 12px 2px; cursor: pointer; min-height: 48px;
+  }
+  .checklist input {
+    flex: 0 0 24px; width: 24px; height: 24px; margin-top: 2px;
+    accent-color: var(--green);
+  }
+  .checklist input:checked + span { text-decoration: line-through; color: var(--muted); }
+
+  .progress { font-size: .9rem; color: var(--muted); margin: 6px 0 0; }
+  .btn {
+    display: inline-block; margin-top: 10px; padding: 10px 14px;
+    border-radius: 10px; border: 1px solid var(--line);
+    background: #fff; font: inherit; font-size: .9rem; cursor: pointer;
+  }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: .95rem; }
+  th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--navy); }
+
+  .toolbar { display: flex; gap: 8px; margin: 0 0 14px; }
+  .toolbar button {
+    flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--card); font: inherit; font-size: .95rem; font-weight: 600;
+    min-height: 48px; cursor: pointer; color: var(--navy);
+  }
+
+  footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 10px 20px 40px; }
+
+  .totop {
+    position: fixed; right: 16px; bottom: 16px;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--navy); color: #fff; border: 0;
+    font-size: 1.4rem; box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    display: none; cursor: pointer;
+  }
+  .totop.show { display: block; }
+
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111418; --card: #1b1f26; --ink: #eee; --muted: #aab; --line: #2c323c; }
+    a { color: #9cc3ff; }
+    summary .icon { background: #262c36; }
+    .alert, .danger { background: #2a1416; }
+    .warn { background: #2a2210; }
+    .tip { background: #13241b; }
+    .numbers a { border-color: var(--line); }
+    .numbers a strong { color: #ff6b6b; }
+    .body h3, th, .toolbar button { color: #9cc3ff; }
+    .btn { background: var(--card); color: var(--ink); }
+  }
+  @media print {
+    nav.chips, .toolbar, .totop, .btn { display: none !important; }
+    details > summary::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Emergency Survival Guide</h1>
+  <p>What to do if the power goes off for up to 7 days over a UK winter. Plain, practical steps.</p>
+</header>
+
+<nav class="chips" aria-label="Sections">
+  <a href="#first">First hour</a>
+  <a href="#heat">Heat</a>
+  <a href="#water">Water</a>
+  <a href="#food">Food</a>
+  <a href="#power">Power</a>
+  <a href="#light">Light</a>
+  <a href="#comms">Contact</a>
+  <a href="#health">Health</a>
+  <a href="#money">Money</a>
+  <a href="#morale">Morale</a>
+  <a href="#kit">Kit list</a>
+</nav>
+
+<main>
+
+  <div class="numbers">
+    <a href="tel:105"><strong>105</strong><span>Power cut line</span></a>
+    <a href="tel:999"><strong>999</strong><span>Emergency</span></a>
+    <a href="tel:111"><strong>111</strong><span>NHS advice</span></a>
+  </div>
+
+  <div class="alert">
+    <strong>Most important rule:</strong> never use a BBQ, patio heater, camping stove or generator indoors to keep warm. They give off carbon monoxide, which you can't see or smell and which kills. Have a battery CO alarm running.
+  </div>
+
+  <div class="toolbar">
+    <button type="button" id="openAll">Open all</button>
+    <button type="button" id="closeAll">Close all</button>
+  </div>
+
+  <!-- FIRST HOUR -->
+  <section class="card" id="first">
+    <details open>
+      <summary><span class="icon">⏱️</span>First hour checklist<span class="tag top">START HERE</span></summary>
+      <div class="body">
+        <p class="why">Tick these off as you go. Your ticks are saved on this phone.</p>
+        <ul class="checklist" data-list="first">
+          <li><label><input type="checkbox"><span>Check if it's just you: look at neighbours' lights and call <a href="tel:105">105</a>.</span></label></li>
+          <li><label><input type="checkbox"><span>Switch off and unplug electrical items so nothing surges when power returns. Leave one light switched on so you know when it's back.</span></label></li>
+          <li><label><input type="checkbox"><span>Keep the fridge and freezer doors shut.</span></label></li>
+          <li><label><input type="checkbox"><span>Fill the bath, plus bottles and pans, with water while it's still running.</span></label></li>
+          <li><label><input type="checkbox"><span>Pick your warm room and start setting it up (see Heat).</span></label></li>
+          <li><label><input type="checkbox"><span>Put the CO alarm, torches and power banks where everyone can find them.</span></label></li>
+          <li><label><input type="checkbox"><span>Switch phones to battery saver. Turn off Wi-Fi and Bluetooth if you're not using them.</span></label></li>
+          <li><label><input type="checkbox"><span>Check on elderly or vulnerable neighbours.</span></label></li>
+        </ul>
+        <p class="progress" data-progress="first"></p>
+        <button type="button" class="btn" data-reset="first">Clear ticks</button>
+      </div>
+    </details>
+  </section>
+
+  <!-- HEAT -->
+  <section class="card" id="heat">
+    <details>
+      <summary><span class="icon">🔥</span>Heat<span class="tag top">TOP RISK</span></summary>
+      <div class="body">
+        <p>In a UK winter, cold is the biggest danger. Sort this first.</p>
+
+        <div class="warn"><strong>Your gas boiler probably won't work.</strong> Almost all modern boilers need electricity for the pump and controls. Having gas doesn't mean having heating.</div>
+
+        <h3>Heat one room, not the house</h3>
+        <ul>
+          <li>Pick a small room with the fewest windows and outside walls.</li>
+          <li>Close the door. Put a rolled towel along the bottom.</li>
+          <li>Hang blankets or duvets over windows and the door.</li>
+          <li>Everyone eats, plays and sleeps in that room.</li>
+          <li>Keep the curtains in other rooms shut.</li>
+        </ul>
+
+        <h3>Keep bodies warm</h3>
+        <ul>
+          <li>Wear layers. Several thin layers beat one thick one.</li>
+          <li>Wear a hat, socks and slippers indoors, even in bed.</li>
+          <li>Use sleeping bags inside duvets for night time.</li>
+          <li>Hot water bottles are brilliant if you can boil water.</li>
+          <li>Eat regularly and have hot drinks. Food is fuel for your body.</li>
+          <li>Move about every hour to keep circulation going.</li>
+        </ul>
+
+        <h3>Wood burner or open fire</h3>
+        <ul>
+          <li>Make sure you have dry fuel for 7 days before winter.</li>
+          <li>Keep the CO alarm in the same room.</li>
+        </ul>
+
+        <div class="danger"><strong>Watch for hypothermia:</strong> shivering, confusion, slurred speech, drowsiness. Warm the person gradually with blankets and warm (not hot) drinks. If they get worse, call <a href="tel:999">999</a>.</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- WATER -->
+  <section class="card" id="water">
+    <details>
+      <summary><span class="icon">💧</span>Water</summary>
+      <div class="body">
+        <p>Mains water usually keeps running for a while, but pumping stations can fail in a long power cut.</p>
+
+        <h3>How much to store</h3>
+        <ul>
+          <li>Drinking: about <strong>2 litres per person per day</strong>.</li>
+          <li>For 7 days that's <strong>14 litres each</strong>, plus extra for cooking and washing.</li>
+          <li>Don't forget pets.</li>
+        </ul>
+
+        <h3>Toilets</h3>
+        <ul>
+          <li>Fill the bath at the start.</li>
+          <li>If the toilet won't refill, pour a bucket of water straight into the bowl to flush.</li>
+        </ul>
+
+        <h3>Frozen pipes</h3>
+        <ul>
+          <li>A cold house can freeze pipes. Know where your stopcock is <strong>now</strong>.</li>
+          <li>If a pipe bursts, turn off the stopcock straight away.</li>
+        </ul>
+
+        <div class="tip">If you're told water isn't safe, boil it for one minute (rolling boil) before drinking.</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- FOOD -->
+  <section class="card" id="food">
+    <details>
+      <summary><span class="icon">🥫</span>Food and cooking</summary>
+      <div class="body">
+        <h3>How long things stay cold</h3>
+        <table>
+          <tr><th>Fridge (door shut)</th><td>About 4 hours</td></tr>
+          <tr><th>Full freezer (door shut)</th><td>About 48 hours</td></tr>
+          <tr><th>Half full freezer</th><td>About 24 hours</td></tr>
+        </table>
+        <p class="why">Eat fridge food first, then freezer food, then tins and dry food.</p>
+
+        <h3>Using the cold outside</h3>
+        <ul>
+          <li>The garden, shed or garage can work as a fridge, but only if it stays <strong>below 5°C</strong> all day.</li>
+          <li>Use a cool box so animals can't get at it.</li>
+        </ul>
+
+        <h3>Cooking</h3>
+        <ul>
+          <li>A camping stove with plenty of gas canisters is the easiest option.</li>
+          <li>Use it outside, in a porch, or with a window wide open. CO alarm on.</li>
+          <li>Never leave it unattended.</li>
+        </ul>
+
+        <h3>No-cook Christmas backup</h3>
+        <ul>
+          <li>Tins you can eat cold (beans, fish, fruit, rice pudding)</li>
+          <li>Crackers, oatcakes, bread, cereal</li>
+          <li>Long-life milk and juice</li>
+          <li>Cheese, cured meats, peanut butter, nuts</li>
+          <li>Chocolate and treats for morale</li>
+        </ul>
+        <div class="warn"><strong>The turkey:</strong> if it's in the freezer, have a plan for it in the first 2 days or accept you may lose it.</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- POWER -->
+  <section class="card" id="power">
+    <details>
+      <summary><span class="icon">🔋</span>Power and charging</summary>
+      <div class="body">
+        <h3>Portable power station</h3>
+        <ul>
+          <li>A unit like a Jackery 300 Plus with solar panels helps, but December sun in the UK is weak. On a grey day the panels will only top it up a little.</li>
+          <li>Use it for phones, LED lights and the broadband router.</li>
+          <li><strong>Don't</strong> use it for anything that heats (kettles, heaters, hair dryers). They drain it in minutes.</li>
+        </ul>
+
+        <div class="tip"><strong>Boiler tip:</strong> a power station <em>may</em> run a gas boiler's pump for a couple of hours, but only if an electrician has first fitted a plug to the boiler's supply. Arrange this well before winter, never during a power cut.</div>
+
+        <h3>Other ways to charge</h3>
+        <ul>
+          <li>Keep power banks fully charged at all times.</li>
+          <li>Your car can charge phones while the engine runs.</li>
+        </ul>
+        <div class="danger"><strong>Never</strong> run a car engine in a closed garage, and never run a generator indoors or in a garage.</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- LIGHT -->
+  <section class="card" id="light">
+    <details>
+      <summary><span class="icon">🔦</span>Light</summary>
+      <div class="body">
+        <ul>
+          <li><strong>Head torches</strong> are the best buy. Both hands stay free.</li>
+          <li>LED lanterns for the warm room.</li>
+          <li>Plenty of spare batteries, all the same size if possible.</li>
+          <li>Keep a torch by every bed.</li>
+        </ul>
+        <div class="warn">Keep candles to a minimum. They're a real fire risk, especially with tired people, kids and pets about. Never leave one burning in an empty room.</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- COMMS -->
+  <section class="card" id="comms">
+    <details>
+      <summary><span class="icon">📻</span>Staying in contact</summary>
+      <div class="body">
+        <ul>
+          <li><a href="tel:105"><strong>105</strong></a> is free from any phone and gives power cut updates.</li>
+          <li>If your landline has switched to digital (most have), it will <strong>stop working</strong> in a power cut.</li>
+          <li>Mobile masts can drop out after a few hours. Send texts rather than calls, as they use less signal.</li>
+          <li>A wind-up or battery radio keeps you in touch with local news.</li>
+          <li>Agree a plan with family now: where to meet and who checks on whom if phones go down.</li>
+          <li>Write important numbers on paper.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- HEALTH -->
+  <section class="card" id="health">
+    <details>
+      <summary><span class="icon">💊</span>Health and vulnerable people</summary>
+      <div class="body">
+        <ul>
+          <li>Check which medicines need keeping cold, and plan for them.</li>
+          <li>Have more than a week's supply of regular medicines over Christmas. Pharmacies close.</li>
+          <li>Keep a first aid kit stocked.</li>
+          <li>Look in on elderly neighbours. Cold is the real danger for them.</li>
+        </ul>
+        <div class="tip"><strong>Priority Services Register:</strong> if anyone at home is elderly, has young children, a disability, or uses electrical medical equipment, sign up free with your energy supplier and your local network operator. You get priority help and updates in a power cut.</div>
+      </div>
+    </details>
+  </section>
+
+  <!-- MONEY -->
+  <section class="card" id="money">
+    <details>
+      <summary><span class="icon">💷</span>Money, car and pets</summary>
+      <div class="body">
+        <ul>
+          <li>Card machines and cash machines may not work. Keep some cash at home.</li>
+          <li>Keep the car at least half full. Petrol pumps need power too.</li>
+          <li>Pets need food, water and a warm spot planned in.</li>
+          <li>Keep doors locked. Some alarms and gates won't work without power.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- MORALE -->
+  <section class="card" id="morale">
+    <details>
+      <summary><span class="icon">🎲</span>Morale</summary>
+      <div class="body">
+        <p>Seven days is a long time, especially at Christmas. Keeping spirits up matters more than people expect.</p>
+        <ul>
+          <li>Board games, cards, puzzles, books.</li>
+          <li>Keep a rough daily routine: meals, a walk in daylight, bedtime.</li>
+          <li>Give kids small jobs. It helps them feel in control.</li>
+          <li>Open presents by torchlight. It can still be a good Christmas.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- KIT -->
+  <section class="card" id="kit">
+    <details>
+      <summary><span class="icon">🧰</span>Kit list to prepare</summary>
+      <div class="body">
+        <p class="why">Get these before winter. Tick them off as you buy them.</p>
+        <ul class="checklist" data-list="kit">
+          <li><label><input type="checkbox"><span>Battery carbon monoxide alarm</span></label></li>
+          <li><label><input type="checkbox"><span>Head torch for each person</span></label></li>
+          <li><label><input type="checkbox"><span>LED lantern</span></label></li>
+          <li><label><input type="checkbox"><span>Spare batteries</span></label></li>
+          <li><label><input type="checkbox"><span>Power banks (charged)</span></label></li>
+          <li><label><input type="checkbox"><span>Wind-up or battery radio</span></label></li>
+          <li><label><input type="checkbox"><span>Camping stove and spare gas canisters</span></label></li>
+          <li><label><input type="checkbox"><span>Matches or lighter</span></label></li>
+          <li><label><input type="checkbox"><span>Bottled water (14 litres per person)</span></label></li>
+          <li><label><input type="checkbox"><span>7 days of no-cook food</span></label></li>
+          <li><label><input type="checkbox"><span>Sleeping bags</span></label></li>
+          <li><label><input type="checkbox"><span>Hot water bottles</span></label></li>
+          <li><label><input type="checkbox"><span>Hats, gloves, thermal layers</span></label></li>
+          <li><label><input type="checkbox"><span>First aid kit</span></label></li>
+          <li><label><input type="checkbox"><span>A week or more of regular medicines</span></label></li>
+          <li><label><input type="checkbox"><span>Cash</span></label></li>
+          <li><label><input type="checkbox"><span>Cool box</span></label></li>
+          <li><label><input type="checkbox"><span>Bin bags and wet wipes</span></label></li>
+          <li><label><input type="checkbox"><span>Pet food</span></label></li>
+          <li><label><input type="checkbox"><span>Board games, cards, books</span></label></li>
+          <li><label><input type="checkbox"><span>Important numbers written on paper</span></label></li>
+          <li><label><input type="checkbox"><span>Signed up to the Priority Services Register (if needed)</span></label></li>
+        </ul>
+        <p class="progress" data-progress="kit"></p>
+        <button type="button" class="btn" data-reset="kit">Clear ticks</button>
+      </div>
+    </details>
+  </section>
+
+  <div class="tip"><strong>Save this to your phone:</strong> open the menu in Chrome and tap "Add to Home screen". Once you've opened it once, it works without internet.</div>
+
+</main>
+
+<footer>
+  General guidance only. In an emergency, call 999.
+</footer>
+
+<button class="totop" id="totop" aria-label="Back to top">↑</button>
+
+<script>
+(function () {
+  // Checklists with saved ticks
+  function load(key) {
+    try { return JSON.parse(localStorage.getItem("esg-" + key) || "[]"); } catch (e) { return []; }
+  }
+  function save(key, val) {
+    try { localStorage.setItem("esg-" + key, JSON.stringify(val)); } catch (e) {}
+  }
+  document.querySelectorAll(".checklist").forEach(function (list) {
+    var key = list.dataset.list;
+    var boxes = list.querySelectorAll("input[type=checkbox]");
+    var saved = load(key);
+    var prog = document.querySelector('[data-progress="' + key + '"]');
+    function update() {
+      var state = [], done = 0;
+      boxes.forEach(function (b, i) { state[i] = b.checked; if (b.checked) done++; });
+      save(key, state);
+      if (prog) prog.textContent = done + " of " + boxes.length + " done";
+    }
+    boxes.forEach(function (b, i) {
+      b.checked = !!saved[i];
+      b.addEventListener("change", update);
+    });
+    update();
+    var reset = document.querySelector('[data-reset="' + key + '"]');
+    if (reset) reset.addEventListener("click", function () {
+      boxes.forEach(function (b) { b.checked = false; });
+      update();
+    });
+  });
+
+  // Nav chips open the section they jump to
+  document.querySelectorAll("nav.chips a").forEach(function (a) {
+    a.addEventListener("click", function () {
+      var sec = document.querySelector(a.getAttribute("href"));
+      var d = sec && sec.querySelector("details");
+      if (d) d.open = true;
+    });
+  });
+
+  // Open / close all
+  var all = document.querySelectorAll("main details");
+  document.getElementById("openAll").onclick = function () { all.forEach(function (d) { d.open = true; }); };
+  document.getElementById("closeAll").onclick = function () { all.forEach(function (d) { d.open = false; }); };
+
+  // Back to top
+  var tt = document.getElementById("totop");
+  window.addEventListener("scroll", function () { tt.classList.toggle("show", window.scrollY > 600); }, { passive: true });
+  tt.onclick = function () { window.scrollTo({ top: 0, behavior: "smooth" }); };
+
+  // Offline support
+  if ("serviceWorker" in navigator && location.protocol === "https:") {
+    navigator.serviceWorker.register("sw.js").catch(function () {});
+  }
+})();
+</script>
+</body>
+</html>
